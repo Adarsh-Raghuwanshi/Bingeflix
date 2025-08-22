@@ -9,6 +9,7 @@ import { auth } from "../firebase";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { authenticateUser } from "../redux/slices/userSlice";
+import { AVATAR_URL, BG_URL } from "../constants";
 
 const UserForm = () => {
   const dispatch = useDispatch();
@@ -36,13 +37,11 @@ const UserForm = () => {
         .then((userCredential) => {
           updateProfile(userCredential.user, {
             displayName: name.current.value,
-            photoURL:
-              "https://lh3.googleusercontent.com/ogw/AF2bZyjw_v_G98uZ-seFjpCyaX9LmIsT0KW73qUXwVJ_BUJzP7g=s64-c-mo",
+            photoURL: AVATAR_URL ,
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
               dispatch(authenticateUser({ uid, email, displayName, photoURL }));
-              navigate("/home");
             })
             .catch((error) => {
               const errorCode = error.code;
@@ -61,9 +60,6 @@ const UserForm = () => {
         password.current.value
       )
         .then((userCredential) => {
-          const { uid, email, displayName, photoURL } = userCredential.user;
-          dispatch(authenticateUser({ uid, email, displayName, photoURL }));
-          navigate("/home");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -77,7 +73,7 @@ const UserForm = () => {
       <div className="absolute top-0 bg-black w-screen h-screen opacity-50"></div>
       <img
         className="h-screen w-screen"
-        src="https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/IN-en-20250721-TRIFECTA-perspective_cadc8408-df6e-4313-a05d-daa9dcac139f_large.jpg"
+        src={BG_URL}
         alt="bg-img"
       />
 
@@ -121,7 +117,7 @@ const UserForm = () => {
         </button>
         <p>
           <span className="text-gray-400">
-            {isSignInForm ? "New to Bingeflix? " : "Already have account? "}
+            {isSignInForm ? "New to Netflix? " : "Already have account? "}
           </span>
           <span
             className="cursor-pointer"

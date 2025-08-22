@@ -1,11 +1,16 @@
-import React from 'react'
+import useNowPlayingMovies from "../hooks/useNowPlayingMovies"
+import MainContainer from "./MainContainer";
+import SecondryContainer from "./SecondryContainer";
 
 const Home = () => {
+  useNowPlayingMovies();
+
   return (
-    <div>
-      
-    </div>
+    <>
+      <MainContainer/>
+      <SecondryContainer/>
+    </>
   )
 }
 
-export default Home
+export default Home;
