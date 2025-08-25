@@ -1,4 +1,3 @@
-import React from "react";
 import MovieCategoryList from "./MovieCategoryList";
 import { useSelector } from "react-redux";
 

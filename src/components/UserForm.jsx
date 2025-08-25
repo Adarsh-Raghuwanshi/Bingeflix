@@ -6,7 +6,6 @@ import {
 import { useRef, useState } from "react";
 import { dataValidation } from "../utils";
 import { auth } from "../firebase";
-import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { authenticateUser } from "../redux/slices/userSlice";
 import { AVATAR_URL, BG_URL } from "../constants";
@@ -15,7 +14,6 @@ const UserForm = () => {
   const dispatch = useDispatch();
   const [isSignInForm, setSignInForm] = useState(true);
   const [validationError, setValidationError] = useState(null);
-  const navigate = useNavigate();
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
@@ -69,7 +67,7 @@ const UserForm = () => {
   }
 
   return (
-    <div className="">
+    <div>
       <div className="absolute top-0 bg-black w-screen h-screen opacity-50"></div>
       <img
         className="h-screen w-screen"
